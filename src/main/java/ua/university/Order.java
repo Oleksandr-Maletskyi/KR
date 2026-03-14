@@ -10,13 +10,9 @@ public class Order {
     private final long orderId;
     private final List<OrderItem> items;
 
-    public Order(long orderId, List<OrderItem> items) {
+    public Order(long orderId) {
         this.orderId = orderId;
-        if (items == null) {
-            this.items = new ArrayList<>();
-        } else {
-            this.items = new ArrayList<>(items);
-        }
+        this.items = new ArrayList<>();
     }
 
     public void addItem(OrderItem item) {
@@ -25,19 +21,31 @@ public class Order {
         }
     }
 
-    public int countUniqueCategories() {
-        Set<ItemCategory> uniqueCategories = new HashSet<>();
-        for (OrderItem item : items) {
-            uniqueCategories.add(item.getCategory());
-        }
-        return uniqueCategories.size();
+    public List<OrderItem> getItems() {
+        return Collections.unmodifiableList(items);
     }
 
     public long getOrderId() {
         return orderId;
     }
 
-    public List<OrderItem> getItems() {
-        return Collections.unmodifiableList(items);
+    public int getItemsCount() {
+        return items.size();
+    }
+
+    public double calculateTotalSum() {
+        double sum = 0;
+        for (OrderItem item : items) {
+            sum += item.getPrice();
+        }
+        return sum;
+    }
+
+    public int countUniqueCategories() {
+        Set<ItemCategory> uniqueCats = new HashSet<>();
+        for (OrderItem item : items) {
+            uniqueCats.add(item.getCategory());
+        }
+        return uniqueCats.size();
     }
 }
