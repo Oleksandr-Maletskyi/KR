@@ -1,5 +1,5 @@
 package ua.university;
 
 public interface PaymentMethod {
-    public void pay();
+    void pay(Account account, double sum);
 }

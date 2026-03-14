@@ -3,7 +3,7 @@ package ua.university;
 import java.time.LocalDate;
 import java.time.Period;
 
-public abstract class OrderItem {
+public class OrderItem {
     protected String name;
     protected double price;
     protected ItemCategory category;
@@ -18,8 +18,8 @@ public abstract class OrderItem {
         return name;
     }
 
-    public String getPrice(){
-        return name;
+    public double getPrice(){
+        return price;
     }
 
     public ItemCategory getCategory(){
